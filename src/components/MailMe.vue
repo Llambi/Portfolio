@@ -27,10 +27,7 @@
                                 <template v-slot:activator="{ on }">
                                     <v-btn
                                             icon
-                                            large
-                                            path="/"
-                                            target="_blank"
-                                            v-on="on"
+                                            to="/"
                                     >
                                         <v-icon color="black">fas fa-caret-left</v-icon>
                                     </v-btn>
@@ -44,19 +41,27 @@
                                         label="Email"
                                         name="email"
                                         type="text"
+                                        v-model="email"
                                 ></v-text-field>
                                 <v-textarea
                                         label="Message"
                                         autocomplete="email"
                                         name="msg"
                                         no-resize
+                                        v-model="msg"
                                 ></v-textarea>
                             </v-form>
                         </v-card-text>
                         <v-layout justify-center>
                             <v-card-actions>
                                 <div class="flex-grow-1 "></div>
-                                <v-btn class="black--text" color="amber">Send</v-btn>
+                                <v-btn
+                                        class="black--text"
+                                        color="amber"
+                                        @click.native="sendMail"
+                                >
+                                    Send
+                                </v-btn>
                             </v-card-actions>
                         </v-layout>
                     </v-card>
@@ -67,8 +72,35 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        name: "mail-me"
+        name: "mail-me",
+        data() {
+            return {
+                msg: "",
+                email: ""
+            }
+        },
+        methods: {
+            sendMail() {
+                const url = ""; //TODO: Obtener url de la Function
+                const postBody = {
+                    msg: this.msg,
+                    sender_mail: this.email
+                };
+
+                axios.post(url, {
+                    body: postBody
+                }).then(() => {
+                })
+                    .catch((e) => {
+                        // eslint-disable-next-line no-console
+                        console.error(e)
+                    });
+
+            }
+        }
     }
 </script>
 

@@ -72,7 +72,7 @@
                             <v-card-actions>
                                 <div class="flex-grow-1 "></div>
                                 <v-btn class="black--text" color="amber">About me</v-btn>
-                                <v-btn class="black--text" color="amber">Contact me</v-btn>
+                                <v-btn class="black--text" color="amber" to="/contactMe">Contact me</v-btn>
                             </v-card-actions>
                         </v-layout>
                     </v-card>

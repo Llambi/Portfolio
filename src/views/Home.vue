@@ -5,20 +5,20 @@
                 height="100%"
                 jumbotron
         >
-            <mail-me/>
-<!--            <home-card-component/>-->
+            <router-view/>
         </v-img>
     </v-app>
 </template>
 
 <script>
 
-   import HomeCardComponent from "../components/HomeCardComponent";
-   import MailMe from "../components/MailMe";
-
     export default {
         name: 'App',
-        components: {HomeCardComponent, MailMe},
+        data() {
+            return {
+                isMe: true
+            }
+        }
     }
 </script>
 

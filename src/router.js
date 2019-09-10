@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomeComponent from './views/Home.vue'
+import Home from './views/Home.vue'
+import HomeCardComponent from "./components/HomeCardComponent.vue";
+import MailMe from "./components/MailMe";
 
 Vue.use(Router)
 
@@ -11,7 +13,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: HomeComponent
+      component: Home,
+      children: [
+        {path:'', component:HomeCardComponent},
+        {path:'contactMe', component:MailMe}
+      ]
+
     },
     {
       path: '/about',
