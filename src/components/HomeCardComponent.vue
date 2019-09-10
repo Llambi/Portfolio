@@ -60,13 +60,12 @@
                         </v-toolbar>
                         <v-card-text>
                             <p>
-                                Estudiante de Ingeniería Informática del Software en la Universidad de Oviedo,
-                                Asturias.
+                                Student of Software Engineering at the University of Oviedo, Asturias.
                             </p>
                             <p>
-                                Desde pequeño he estado interesado por la informática y todo el mundo que le rodea,
-                                siempre dispuesto a aprender nuevas tecnologías y ponerme nuevos retos que llevar a
-                                cabo con un equipo del que poder aprender y al que poder aportar mis conocimientos.
+                                Since I was a child I have been interested in computers and everything around its,
+                                always willing to learn new technologies and set new challenges to carry out with a team
+                                to learn and to which I could contribute my knowledge.
                             </p>
                         </v-card-text>
                         <v-layout justify-center>
@@ -84,6 +83,6 @@
 </template>
 <script>
     export default {
-        name: 'home-componen'
+        name: 'home-card-componen'
     }
 </script>
