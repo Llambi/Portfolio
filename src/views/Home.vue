@@ -14,11 +14,7 @@
 
     export default {
         name: 'App',
-        data() {
-            return {
-                isMe: true
-            }
-        }
+
     }
 </script>
 
