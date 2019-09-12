@@ -39,7 +39,7 @@
                             sm="4"
                             cols="4"
                     >
-                        <github-card-component :repo="repo"/>
+                        <router-view :repo="repo"/>
                     </v-col>
                 </v-row>
             </v-container>
