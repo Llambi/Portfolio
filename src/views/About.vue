@@ -23,7 +23,6 @@
                 <span>Regress</span>
             </v-tooltip>
         </v-app-bar>
-
         <v-content>
             <v-container
                     class="fill-height"
@@ -40,80 +39,7 @@
                             sm="4"
                             cols="4"
                     >
-                        <v-card class="elevation-10">
-                            <v-toolbar
-                                    color="amber accent-4"
-                                    class="black--text"
-                                    flat
-                            >
-                                <v-toolbar-title>
-                                    <div class="font-weight-bold">{{repo.name}}</div>
-                                    <span class="black--text subtitle-1">Created: {{repo.created_at}}   Updated: {{repo.pushed_at}}</span>
-                                </v-toolbar-title>
-                            </v-toolbar>
-                            <v-card-actions class="d-flex justify-space-between mb-6">
-                                <v-tooltip bottom>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn
-                                                icon
-                                                large
-                                                :href=repo.html_url
-                                                target="_blank"
-                                                v-on="on"
-                                        >
-                                            <v-icon>fab fa-github</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>{{repo.name}}</span>
-                                </v-tooltip>
-                                <v-tooltip bottom>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn
-                                                icon
-                                                large
-                                                target="_blank"
-                                                v-on="on"
-                                        >
-                                            <v-icon>{{repo.icon}}</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>{{repo.lenguaje}}</span>
-                                </v-tooltip>
-                                <v-tooltip bottom>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn
-                                                icon
-                                                large
-                                                target="_blank"
-                                                v-on="on"
-                                        >
-                                            <v-icon>fas fa-glasses</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>{{repo.watchers}}</span>
-                                </v-tooltip>
-                                <v-btn
-                                        color="amber accent-4"
-                                        icon
-                                        @click="repo.show = !repo.show"
-                                >
-                                    <v-icon>{{ repo.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                </v-btn>
-                            </v-card-actions>
-                            <v-expand-transition>
-                                <div v-show="repo.show">
-                                    <v-divider></v-divider>
-                                    <v-subheader
-                                            class="white--text"
-                                    >
-                                        Description:
-                                    </v-subheader>
-                                    <v-card-text>
-                                        {{repo.description}}
-                                    </v-card-text>
-                                </div>
-                            </v-expand-transition>
-                        </v-card>
+                        <github-card-component :repo="repo"/>
                     </v-col>
                 </v-row>
             </v-container>
@@ -123,13 +49,16 @@
 
 <script>
     import axios from 'axios';
+    import GithubCardComponent from "../components/GithubCardComponent";
 
     export default {
+        components: {GithubCardComponent},
         props: {
             source: String,
         },
         data: () => ({
             repos: [],
+            loading: true
         }),
         created() {
             this.$vuetify.theme.dark = true;
@@ -157,7 +86,10 @@
                                 };
                                 this.repos.push(repo)
                             })
-                    })
+                    });
+                })
+                .then(() => {
+                    this.loading = false
                 })
         }
     }
@@ -168,13 +100,23 @@
         color: black;
         text-decoration: none;
     }
+
     .toolbar__title:hover {
         color: black;
         text-decoration: none;
     }
+
     .toolbar__title:visited {
         color: black;
         text-decoration: none;
+    }
+
+    .v-progress-linear {
+        -moz-transform: scale(1, -1);
+        -webkit-transform: scale(1, -1);
+        -o-transform: scale(1, -1);
+        -ms-transform: scale(1, -1);
+        transform: scale(1, -1);
     }
 
 </style>
